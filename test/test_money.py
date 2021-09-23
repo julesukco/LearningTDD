@@ -12,6 +12,9 @@ class Money:
     def divide(self, divisor):
         return Money(self.amount / divisor, self.currency)
 
+    def add(self, addor):
+        return Money(self.amount + addor.amount, self.currency)
+
     def __eq__(self, other):
         return self.amount == other.amount and self.currency == other.currency
 
@@ -31,6 +34,12 @@ class TestMoney(unittest.TestCase):
         twenty_dollars = Money(20, "USD")
         ten_dollars = Money(10, "USD")
         self.assertEqual(ten_dollars, twenty_dollars.divide(2))
+
+    def test_should_add(self):
+        twenty_dollars = Money(20, "USD")
+        ten_dollars = Money(10, "USD")
+        thirty_dollars = Money(30, "USD")
+        self.assertEqual(thirty_dollars, twenty_dollars.add(ten_dollars))
 
 
 if __name__ == '__main__':
